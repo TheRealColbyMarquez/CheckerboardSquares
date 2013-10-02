@@ -18,15 +18,15 @@ namespace CheckerboardSquares
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        int number;
-        Rectangle[] squares;
         Texture2D square;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        }
+
+            
+        } 
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -51,6 +51,7 @@ namespace CheckerboardSquares
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             square = Content.Load<Texture2D>("square3");
+           
 
             // TODO: use this.Content to load your game content here
         }
@@ -80,6 +81,32 @@ namespace CheckerboardSquares
             base.Update(gameTime);
         }
 
+        public void DrawClearScreen()
+        {
+            for (int x = 15; x < 800 / 15; x++)
+            {
+                spriteBatch.Draw(square, new Vector2(x * 15, 0), Color.Black);
+            }
+
+            for (int y = 15; y < 600 / 15; y++)
+            {
+                spriteBatch.Draw(square, new Vector2(y * 15, 0), Color.Black);
+            }
+        }
+
+        public void DrawCheckerBoard()
+        {
+            for (int y = 0; y < 600 / 15; y++)
+            {
+                for (int x = 0; x < 800 / 15 + 1; x++)
+                {
+                    spriteBatch.Draw(square, new Vector2(x * 15, y * 15), Color.White);
+                }
+            }
+            
+            
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -88,7 +115,13 @@ namespace CheckerboardSquares
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            //DrawClearScreen();
+
+            DrawCheckerBoard();
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
