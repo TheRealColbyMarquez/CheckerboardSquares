@@ -83,15 +83,15 @@ namespace CheckerboardSquares
 
         public void DrawClearScreen()
         {
-            for (int x = 15; x < 800 / 15; x++)
+            for (int y = 0; y < 600 / 15; y++)
             {
-                spriteBatch.Draw(square, new Vector2(x * 15, 0), Color.Black);
+                for (int x = 0; x < 800 / 15 + 1; x++)
+                {
+                    spriteBatch.Draw(square, new Vector2(x * 15, y * 15), Color.Black);
+                }
             }
 
-            for (int y = 15; y < 600 / 15; y++)
-            {
-                spriteBatch.Draw(square, new Vector2(y * 15, 0), Color.Black);
-            }
+
         }
 
         public void DrawCheckerBoard()
